@@ -11,23 +11,26 @@ public class playerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        player.velocity = new Vector3(Input.GetAxis("Horizontal") * speed, player.velocity.y, player.velocity.z);
+        if (player != null)
+        {
+            player.velocity = new Vector3(Input.GetAxis("Horizontal") * speed, player.velocity.y, player.velocity.z);
 
-        if (player.velocity.x > 0)
-        {
-            gameObject.transform.rotation = Quaternion.LookRotation(Vector3.right);
+            if (player.velocity.x > 0)
+            {
+                gameObject.transform.rotation = Quaternion.LookRotation(Vector3.right);
+            }
+            if (player.velocity.x < 0)
+            {
+                gameObject.transform.rotation = Quaternion.LookRotation(-Vector3.right);
+            }
+            if (Input.GetKey(KeyCode.W) && GroundCheck())
+            {
+                player.velocity = new Vector3(player.velocity.x, jumpheight, player.velocity.z);
+            }
         }
-        if (player.velocity.x < 0)
-        {
-            gameObject.transform.rotation = Quaternion.LookRotation(-Vector3.right);
-        }
-        if (Input.GetKey(KeyCode.W) && GroundCheck())
-        {
-            player.velocity = new Vector3(player.velocity.x, jumpheight, player.velocity.z);
-        }
-
-        
     }
+
+    
 
     private bool GroundCheck()
     {
