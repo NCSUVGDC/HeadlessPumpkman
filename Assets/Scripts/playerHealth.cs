@@ -12,6 +12,8 @@ public class playerHealth : MonoBehaviour
 
     public int maxHealth = 3;
 
+    
+
     private void FixedUpdate()
     {
         if(health <= 0)
@@ -47,4 +49,6 @@ public class playerHealth : MonoBehaviour
     {
         return maxHealth;
     }
+
+    
 }

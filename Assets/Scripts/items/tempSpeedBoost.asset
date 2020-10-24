@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fc4fe2734d744269bd2eb7d69ac8a10, type: 3}
-  m_Name: speedBoost
+  m_Name: tempSpeedBoost
   m_EditorClassIdentifier: 
   name: 
   health: 0
-  speed: 2
+  speed: 5
   jump: 0
   hasCooldown: 1
-  coolDuration: 3
+  coolDuration: 2

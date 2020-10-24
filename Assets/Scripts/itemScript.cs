@@ -11,7 +11,14 @@ public class itemScript : MonoBehaviour
 
     public bool isDestroyed = true;
 
+    private bool hasCooldown = false;
+    private bool poweredUp = false;
+    
 
+    private void Start()
+    {
+       hasCooldown = item.hasCooldown;
+    }
     private void FixedUpdate()
     {
        
@@ -28,13 +35,55 @@ public class itemScript : MonoBehaviour
             playerMovement scriptMove = (playerMovement)player.GetComponent(typeof(playerMovement));
             playerHealth scriptHealth = (playerHealth)player.GetComponent(typeof(playerHealth));
 
-            int speed = scriptMove.getSpeed();
-            speed += item.speed;
-            scriptMove.setSpeed(speed);
+            if(hasCooldown)
+            {
+                if(!poweredUp)
+                {
+                    scriptMove.setPoweredUp(item);
+                    //poweredUp = true;
+                    //float timestamp = Time.time;
+                    //if (Time.time < timestamp + item.coolDuration)
+                    //{
+                    //    Debug.Log("Time: " + Time.time + " | timestamp: " + timestamp);
 
-            float jump = scriptMove.getJump();
-            jump += item.jump;
-            scriptMove.setJump(jump);
+                    //    int speed = item.speed;
+                    //    scriptMove.setSpeedMod(speed);
+
+                    //    float jump = item.jump;
+                    //    scriptMove.setJumpMod(jump);
+                    //}
+                    //else
+                    //{
+                    //    scriptMove.setSpeedMod(0);
+
+                    //    scriptMove.setJumpMod(0);
+
+                    //    poweredUp = false;
+                    //}
+
+                    //while(Time.time < timestamp + item.coolDuration)
+                    //{
+                    //    int speed = item.speed;
+                    //    scriptMove.setSpeedMod(speed);
+
+                    //    float jump = item.jump;
+                    //    scriptMove.setJumpMod(jump);
+                    //}
+
+
+
+                }
+            }
+            else
+            {
+                int speed = item.speed;
+                scriptMove.setSpeedMod(speed);
+
+                float jump = item.jump;
+                scriptMove.setJumpMod(jump);
+            }
+
+            
 
             if (scriptHealth.getHealth() < scriptHealth.getMaxHealth())
             {

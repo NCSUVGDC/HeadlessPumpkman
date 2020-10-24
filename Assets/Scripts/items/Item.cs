@@ -10,4 +10,7 @@ public class Item : ScriptableObject
     public int speed;
     public float jump;
 
+    public bool hasCooldown = false;
+
+    public float coolDuration = 0f;
 }
