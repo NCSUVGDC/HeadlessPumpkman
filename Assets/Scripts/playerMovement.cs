@@ -8,6 +8,9 @@ public class playerMovement : MonoBehaviour
     public int speed = 5;
     public Rigidbody player;
     public float jumpheight = 7;
+    public float health = 3;
+
+    
 
     private void FixedUpdate()
     {
@@ -37,5 +40,30 @@ public class playerMovement : MonoBehaviour
         float distance = 1.1f;
         Vector3 dir = new Vector3(0, -1, 0);
         return Physics.Raycast(player.position, dir, distance);
+    }
+
+    public void setSpeed(int value)
+    {
+        speed = value;
+    }
+
+    public int getSpeed()
+    {
+        return speed;
+    }
+
+    public void setJump(float value)
+    {
+        jumpheight = value;
+    }
+
+    public float getJump()
+    {
+        return jumpheight;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        
     }
 }

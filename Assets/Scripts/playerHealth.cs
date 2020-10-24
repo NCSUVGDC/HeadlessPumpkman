@@ -10,6 +10,8 @@ public class playerHealth : MonoBehaviour
 
     public GameObject wall;
 
+    public int maxHealth = 3;
+
     private void FixedUpdate()
     {
         if(health <= 0)
@@ -29,5 +31,20 @@ public class playerHealth : MonoBehaviour
                 health = 0;
             }
         }
+    }
+
+    public void setHealth(int value)
+    {
+        health = value;
+    }
+
+    public int getHealth()
+    {
+        return health;
+    }
+
+    public int getMaxHealth()
+    {
+        return maxHealth;
     }
 }
