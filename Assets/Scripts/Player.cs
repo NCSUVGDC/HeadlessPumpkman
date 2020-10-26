@@ -9,9 +9,6 @@ public class Player : MonoBehaviour
     public GameObject meleeWeapon;
     public GameObject rangedWeapon;
 
-    public int health = 100;
-
-    public float speed = 5;
     public float meleeReach = 2;
 
     public enum AttackState
@@ -31,30 +28,17 @@ public class Player : MonoBehaviour
     public float rangedWindupTime = 11;
     public float rangedAttackingTime = 1;
     public float rangedCooldownTime = 1;
-    private float rangeTimer = 0;
-
-    //Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    
     //Updates at a fixed interval, regardless of framerate
     void FixedUpdate()
     {
-        //PLAYER MOVEMENT
-        playerBody.velocity = new Vector3(Input.GetAxis("Horizontal") * speed, playerBody.velocity.y, playerBody.velocity.z);
-
+        
         if (playerBody.velocity.x > 0) //If moving right...
         {
-            //Makes the player character face right, then repositions the sword hitbox accordingly
-            gameObject.transform.rotation = Quaternion.LookRotation(Vector3.right);
             meleeWeapon.transform.position = new Vector3(gameObject.transform.position.x + meleeReach, gameObject.transform.position.y, 0);
         }
         if (playerBody.velocity.x < 0) //If moving left...
         {
-            //Makes the player character face left, then repositions the sword hitbox accordingly
-            gameObject.transform.rotation = Quaternion.LookRotation(Vector3.left);
             meleeWeapon.transform.position = new Vector3(gameObject.transform.position.x - meleeReach, gameObject.transform.position.y, 0);
         }
         
@@ -83,11 +67,6 @@ public class Player : MonoBehaviour
         {
             MeleeManager(meleeState);
         }
-    }
-
-    void MeleeAttack()
-    {
-        
     }
 
     //Responsible for the Melee Attack's states and timers.
