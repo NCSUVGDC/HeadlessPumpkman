@@ -1760,6 +1760,81 @@ TextureImporter:
   - first:
       213: 4368034360078758248
     second: ground_v2_224
+  - first:
+      213: -8140110121866356236
+    second: Ground transition_0
+  - first:
+      213: -3882286013395123008
+    second: Ground transition_1
+  - first:
+      213: -4885612917831418630
+    second: Ground transition_2
+  - first:
+      213: -6385891860810215155
+    second: Ground transition_3
+  - first:
+      213: 1568660034698237217
+    second: Ground transition_4
+  - first:
+      213: 40169576817526798
+    second: Ground transition_5
+  - first:
+      213: -3820485133355347040
+    second: Ground transition_6
+  - first:
+      213: -1839143110394158907
+    second: Ground transition_7
+  - first:
+      213: 3568560911986416593
+    second: Ground transition_8
+  - first:
+      213: 1153108263121201069
+    second: Ground transition_9
+  - first:
+      213: 6416850893997532006
+    second: Ground transition_10
+  - first:
+      213: 1579279539029763701
+    second: Ground transition_11
+  - first:
+      213: -1343390202646313624
+    second: Ground transition_12
+  - first:
+      213: 7442458189514506101
+    second: Ground transition_13
+  - first:
+      213: -4996392296154507053
+    second: Ground transition_14
+  - first:
+      213: 8640299580312129446
+    second: Ground transition_15
+  - first:
+      213: 8498959158287014295
+    second: Ground transition_16
+  - first:
+      213: -2786192533717104651
+    second: Ground transition_17
+  - first:
+      213: 596931284690288902
+    second: Ground transition_18
+  - first:
+      213: -908394376670865258
+    second: Ground transition_19
+  - first:
+      213: -516349437246472004
+    second: Ground transition_20
+  - first:
+      213: -5250748416364614636
+    second: Ground transition_21
+  - first:
+      213: 7612388226316885573
+    second: Ground transition_22
+  - first:
+      213: -7458191149016003049
+    second: Ground transition_23
+  - first:
+      213: -9109661136615586833
+    second: Ground transition_24
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1847,11 +1922,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ground_v2_15
+      name: Ground transition_10
       rect:
         serializedVersion: 2
         x: 0
-        y: 570
+        y: 650
         width: 384
         height: 384
       alignment: 0
@@ -1861,18 +1936,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f64bb0827015d32c0800000000000000
-      internalID: -4450311765593705361
+      spriteID: 663ee51e3eb3d0950800000000000000
+      internalID: 6416850893997532006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ground_v2_19
+      name: Ground transition_14
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 570
+        x: 1539
+        y: 650
+        width: 381
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d8563dbdaf39aab0800000000000000
+      internalID: -4996392296154507053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground transition_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 265
         width: 384
         height: 384
       alignment: 0
@@ -1882,8 +1978,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f16c70241dabb13b0800000000000000
-      internalID: -5540629508630526433
+      spriteID: 6af0675a0b288e770800000000000000
+      internalID: 8640299580312129446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground transition_19
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 265
+        width: 381
+        height: 384
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6981296902cb463f0800000000000000
+      internalID: -908394376670865258
       vertices: []
       indices: 
       edges: []
