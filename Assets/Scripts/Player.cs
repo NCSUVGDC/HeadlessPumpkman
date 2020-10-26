@@ -7,11 +7,12 @@ public class Player : MonoBehaviour
     public Rigidbody playerBody;
 
     public GameObject meleeWeapon;
-    public GameObject rangedWeapon;
 
     public int health = 100;
 
-    public float speed = 5;
+    public float frameAcceleration = 0.5f;
+    public float topSpeed = 10;
+    public float speed = 10;
     public float meleeReach = 2;
 
     public enum AttackState
@@ -31,32 +32,61 @@ public class Player : MonoBehaviour
     public float rangedWindupTime = 11;
     public float rangedAttackingTime = 1;
     public float rangedCooldownTime = 1;
-    private float rangeTimer = 0;
+    private float rangedTimer = 0;
 
-    //Start is called before the first frame update
-    void Start()
+    public float speedBoostTime = 1;
+    public float knockBackTime = 1;
+    private float pushTimer = 0;
+
+    private bool isBeingPushed = false;
+    private float pushForce = 0;
+    private bool isFacingRight = true;
+
+    public float appliedFriction = 0.6f;
+
+    private void Start()
     {
-        
+        //Faces the player towards the right when they spawn in, because isFacingRight defaults to true
+        gameObject.transform.rotation = Quaternion.LookRotation(Vector3.right);
     }
 
     //Updates at a fixed interval, regardless of framerate
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         //PLAYER MOVEMENT
-        playerBody.velocity = new Vector3(Input.GetAxis("Horizontal") * speed, playerBody.velocity.y, playerBody.velocity.z);
 
-        if (playerBody.velocity.x > 0) //If moving right...
+
+        //This syntax reads: if isBeingPushed, then pushForce... else, Input.GetAxis() * speed
+        //float movement = (isBeingPushed ? pushForce : Input.GetAxis("Horizontal") * speed * appliedFriction);
+        //playerBody.velocity = new Vector3(playerBody.velocity.x + movement - playerBody.velocity.x * appliedFriction, playerBody.velocity.y, playerBody.velocity.z);
+
+        if (isBeingPushed)
         {
-            //Makes the player character face right, then repositions the sword hitbox accordingly
-            gameObject.transform.rotation = Quaternion.LookRotation(Vector3.right);
-            meleeWeapon.transform.position = new Vector3(gameObject.transform.position.x + meleeReach, gameObject.transform.position.y, 0);
+            playerBody.velocity = new Vector3(pushForce, playerBody.velocity.y, playerBody.velocity.z);
         }
-        if (playerBody.velocity.x < 0) //If moving left...
+        else
         {
-            //Makes the player character face left, then repositions the sword hitbox accordingly
-            gameObject.transform.rotation = Quaternion.LookRotation(Vector3.left);
-            meleeWeapon.transform.position = new Vector3(gameObject.transform.position.x - meleeReach, gameObject.transform.position.y, 0);
+            MovePlayerFromInput(Input.GetAxisRaw("Horizontal"));
         }
+
+        if (meleeState == AttackState.Ready || meleeState == AttackState.Cooldown) //Prevents the player from turning around during a melee attack
+        {
+            if (playerBody.velocity.x > 0) //If moving right...
+            {
+                //Makes the player character face right, then repositions the sword hitbox accordingly
+                gameObject.transform.rotation = Quaternion.LookRotation(Vector3.right);
+                meleeWeapon.transform.position = new Vector3(gameObject.transform.position.x + meleeReach, gameObject.transform.position.y, 0);
+                isFacingRight = true;
+            }
+            if (playerBody.velocity.x < 0) //If moving left...
+            {
+                //Makes the player character face left, then repositions the sword hitbox accordingly
+                gameObject.transform.rotation = Quaternion.LookRotation(Vector3.left);
+                meleeWeapon.transform.position = new Vector3(gameObject.transform.position.x - meleeReach, gameObject.transform.position.y, 0);
+                isFacingRight = false;
+            }
+        }
+        
         
 
 
@@ -68,14 +98,24 @@ public class Player : MonoBehaviour
             gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
             //Swing animation would begin here
         }
-        else if (Input.GetKey(KeyCode.X))
+        if ((Input.GetKeyUp(KeyCode.Z)) || Input.GetKeyUp(KeyCode.O))
         {
-            if (rangedState == AttackState.Ready)
-            {
-                RangedAttack();
-            }
+
         }
 
+        if ((Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.P)) && rangedState == AttackState.Ready)
+        {
+            rangedState = AttackState.Windup;
+            rangedTimer = rangedWindupTime;
+            gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
+        }
+
+
+        if ((Input.GetKey(KeyCode.C)))
+        {
+            Debug.Log("Enemy Spawned");
+            Instantiate(Resources.Load("Prefabs/DummyEnemy"));
+        }
 
 
         //ATTACK TIMERS
@@ -83,14 +123,87 @@ public class Player : MonoBehaviour
         {
             MeleeManager(meleeState);
         }
+        if (rangedState != AttackState.Ready)
+        {
+            RangedManager(rangedState);
+        }
+        if (isBeingPushed)
+        {
+            PushManager();
+        }
     }
 
-    void MeleeAttack()
+    void MovePlayerFromInput(float input)
     {
-        
+        switch (input)
+        {
+            case 1:
+                {
+                    AcceleratePlayer();
+                    if (playerBody.velocity.x > topSpeed + frameAcceleration)
+                    {
+                        DeceleratePlayer();
+                    }
+                    else if (playerBody.velocity.x > topSpeed)
+                    {
+                        playerBody.velocity = new Vector3(topSpeed, playerBody.velocity.y, playerBody.velocity.z);
+                    }
+                }
+                break;
+            case 0:
+                {
+                    if (playerBody.velocity.x > 0)
+                    {
+                        DeceleratePlayer();
+                        if (playerBody.velocity.x < 0)
+                        {
+                            playerBody.velocity = new Vector3(0, playerBody.velocity.y, playerBody.velocity.z);
+                        }
+                    }
+                    else if (playerBody.velocity.x < 0)
+                    {
+                        AcceleratePlayer();
+                        if (playerBody.velocity.x > 0)
+                        {
+                            playerBody.velocity = new Vector3(0, playerBody.velocity.y, playerBody.velocity.z);
+                        }
+                    }
+                }
+                break;
+            case -1:
+                {
+                    DeceleratePlayer();
+                    if (playerBody.velocity.x < -topSpeed - frameAcceleration)
+                    {
+                        AcceleratePlayer();
+                    }
+                    else if (playerBody.velocity.x < -topSpeed)
+                    {
+                        playerBody.velocity = new Vector3(-topSpeed, playerBody.velocity.y, playerBody.velocity.z);
+                    }
+                }
+                break;
+            default:
+                {
+                    Debug.Log("Input.GetAxisRaw returned a non-integer.");
+                }
+                break;
+        }
     }
 
-    //Responsible for the Melee Attack's states and timers.
+    void AcceleratePlayer()
+    {
+        playerBody.velocity = new Vector3(playerBody.velocity.x + frameAcceleration,
+                                                        playerBody.velocity.y, playerBody.velocity.z);
+    }
+
+    void DeceleratePlayer()
+    {
+        playerBody.velocity = new Vector3(playerBody.velocity.x - frameAcceleration,
+                                                        playerBody.velocity.y, playerBody.velocity.z);
+    }
+
+    //Responsible for the Sword Swing's states, timers, and activation.
     void MeleeManager(AttackState currentState)
     {
         meleeTimer -= Time.deltaTime;
@@ -126,8 +239,80 @@ public class Player : MonoBehaviour
         }
     }
 
-    void RangedAttack()
+    //Responsible for the Pumpkin Bomb's states, timers, and activation.
+    void RangedManager(AttackState currentState)
     {
-        //bomb implementation
+
+        rangedTimer -= Time.deltaTime;
+
+        if (rangedTimer <= 0)
+        {
+            switch (currentState)
+            {
+                case (AttackState.Windup): //If the Windup timer has expired...
+                    {
+                        Instantiate(Resources.Load("Prefabs/PlayerBomb"));
+                        gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Orange", typeof(Material)) as Material;
+                        rangedState = AttackState.Attacking;
+                        rangedTimer = rangedAttackingTime;
+                    }
+                    break;
+                case (AttackState.Attacking): //If the Attacking timer has expired...
+                    {
+                        gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Red", typeof(Material)) as Material;
+                        rangedState = AttackState.Cooldown;
+                        rangedTimer = rangedCooldownTime;
+                    }
+                    break;
+                case (AttackState.Cooldown): //If the Cooldown timer has expired...
+                    {
+                        gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Green", typeof(Material)) as Material;
+                        rangedState = AttackState.Ready;
+                    }
+                    break;
+            }
+        }
+    }
+
+    void PushManager()
+    {
+        pushTimer -= Time.deltaTime;
+
+        if (pushTimer <= 0) //If the pushing timer has expired...
+        {
+            isBeingPushed = false;
+            //inputOverride = true;
+        }
+    }
+
+    public void PushPlayer(bool isSpeedBoost, float force)
+    {
+        isBeingPushed = true;
+        if (isFacingRight)
+        {
+            if (isSpeedBoost)
+            {
+                pushTimer = speedBoostTime;
+                pushForce = force; //Pushes right, TOWARDS the enemy
+            }
+            else //KnockBack
+            {
+                pushTimer = knockBackTime;
+                pushForce = -force; //Pushes left, AWAY from the enemy
+            }
+        }
+        else //Facing left
+        {
+            if (isSpeedBoost)
+            {
+                pushTimer = speedBoostTime;
+                pushForce = -force; //Pushes left, TOWARDS the enemy
+            }
+            else //KnockBack
+            {
+                pushTimer = knockBackTime;
+                pushForce = force; //Pushes right, AWAY from the enemy
+            }
+        }
     }
 }
