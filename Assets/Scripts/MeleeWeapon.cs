@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWeapon : MonoBehaviour
+public class MeleeWeapon : MonoBehaviour
 {
     public int damageVal = 50;
-    public float speedBoostVal = 10;
-    public float knockBackVal = -10;
+
+    [Header("Absolute values only!")]
+    public float speedBoostForce = 1.5f;
+    public float knockBackForce = 1.5f;
     
+
     //here for testing purposes
     public ForceMode fm = ForceMode.Impulse;
 
+    public Player player;
     public Rigidbody playerBody;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Enemy"))
         {
@@ -22,14 +26,16 @@ public class PlayerWeapon : MonoBehaviour
 
             if (enemyKilled)
             {
-                Vector3 speedBoost = new Vector3(speedBoostVal, 0, 0);
-                playerBody.AddForce(speedBoost, fm);
+                player.PushPlayer(true, speedBoostForce);
             }
             else
             {
-                Vector3 knockBack = new Vector3(knockBackVal, 0, 0);
-                playerBody.AddForce(knockBack);
+                player.PushPlayer(false, knockBackForce);
             }
+        }
+        if (other.tag.Equals("Terrain"))
+        {
+            player.PushPlayer(true, speedBoostForce);
         }
     }
 }
