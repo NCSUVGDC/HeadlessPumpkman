@@ -127,3 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  player: {fileID: 0}
+  self: {fileID: 0}
+  detectionRange: 15
+  speed: 5
+  jumpHeight: 3
+  goRight: 1

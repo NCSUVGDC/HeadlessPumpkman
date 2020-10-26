@@ -2099,17 +2099,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5188044701631092053, guid: 48ea5bc62be46214d874c71a6654466f, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e64ac4939af3a9640afd703cf1ffa83b, type: 2}
     - target: {fileID: 5188044701631092055, guid: 48ea5bc62be46214d874c71a6654466f, type: 3}
       propertyPath: m_Name
       value: DummyEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188044701631092057, guid: 48ea5bc62be46214d874c71a6654466f, type: 3}
-      propertyPath: m_Constraints
-      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 5188044701631092059, guid: 48ea5bc62be46214d874c71a6654466f, type: 3}
       propertyPath: m_LocalPosition.x
