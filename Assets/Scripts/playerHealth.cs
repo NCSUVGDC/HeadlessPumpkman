@@ -72,72 +72,72 @@ public class playerHealth : MonoBehaviour
     {
 
         GameObject healthBar = GameObject.Find("HealthBar");
-        Image[] healthBarImages = healthBar.GetComponentsInChildren<Image>();
+    //    Image[] healthBarImages = healthBar.GetComponentsInChildren<Image>();
 
 
-        if (healthBar != null)
-        {
-            if (health >= 3)
-            {
-                if (healthBarImages[2].sprite != fullHp)
-                {
-                    healthBarImages[2].sprite = fullHp;
-                }
-                if (healthBarImages[1].sprite != fullHp)
-                {
-                    healthBarImages[1].sprite = fullHp;
-                }
-                if (healthBarImages[0].sprite != fullHp)
-                {
-                    healthBarImages[0].sprite = fullHp;
-                }
-            }
-            else if (health == 2)
-            {
-                if (healthBarImages[2].sprite != emptyHp)
-                {
-                    healthBarImages[2].sprite = emptyHp;
-                }
-                if (healthBarImages[1].sprite != fullHp)
-                {
-                    healthBarImages[1].sprite = fullHp;
-                }
-                if (healthBarImages[0].sprite != fullHp)
-                {
-                    healthBarImages[0].sprite = fullHp;
-                }
-            }
-            else if (health == 1)
-            {
-                if (healthBarImages[2].sprite != emptyHp)
-                {
-                    healthBarImages[2].sprite = emptyHp;
-                }
-                if (healthBarImages[1].sprite != emptyHp)
-                {
-                    healthBarImages[1].sprite = emptyHp;
-                }
-                if (healthBarImages[0].sprite != fullHp)
-                {
-                    healthBarImages[0].sprite = fullHp;
-                }
-            }
-            else
-            {
-                if (healthBarImages[2].sprite != emptyHp)
-                {
-                    healthBarImages[2].sprite = emptyHp;
-                }
-                if (healthBarImages[1].sprite != emptyHp)
-                {
-                    healthBarImages[1].sprite = emptyHp;
-                }
-                if (healthBarImages[0].sprite != emptyHp)
-                {
-                    healthBarImages[0].sprite = emptyHp;
-                }
-            }
-        }
+    //    if (healthBar != null)
+    //    {
+    //        if (health >= 3)
+    //        {
+    //            if (healthBarImages[2].sprite != fullHp)
+    //            {
+    //                healthBarImages[2].sprite = fullHp;
+    //            }
+    //            if (healthBarImages[1].sprite != fullHp)
+    //            {
+    //                healthBarImages[1].sprite = fullHp;
+    //            }
+    //            if (healthBarImages[0].sprite != fullHp)
+    //            {
+    //                healthBarImages[0].sprite = fullHp;
+    //            }
+    //        }
+    //        else if (health == 2)
+    //        {
+    //            if (healthBarImages[2].sprite != emptyHp)
+    //            {
+    //                healthBarImages[2].sprite = emptyHp;
+    //            }
+    //            if (healthBarImages[1].sprite != fullHp)
+    //            {
+    //                healthBarImages[1].sprite = fullHp;
+    //            }
+    //            if (healthBarImages[0].sprite != fullHp)
+    //            {
+    //                healthBarImages[0].sprite = fullHp;
+    //            }
+    //        }
+    //        else if (health == 1)
+    //        {
+    //            if (healthBarImages[2].sprite != emptyHp)
+    //            {
+    //                healthBarImages[2].sprite = emptyHp;
+    //            }
+    //            if (healthBarImages[1].sprite != emptyHp)
+    //            {
+    //                healthBarImages[1].sprite = emptyHp;
+    //            }
+    //            if (healthBarImages[0].sprite != fullHp)
+    //            {
+    //                healthBarImages[0].sprite = fullHp;
+    //            }
+    //        }
+    //        else
+    //        {
+    //            if (healthBarImages[2].sprite != emptyHp)
+    //            {
+    //                healthBarImages[2].sprite = emptyHp;
+    //            }
+    //            if (healthBarImages[1].sprite != emptyHp)
+    //            {
+    //                healthBarImages[1].sprite = emptyHp;
+    //            }
+    //            if (healthBarImages[0].sprite != emptyHp)
+    //            {
+    //                healthBarImages[0].sprite = emptyHp;
+    //            }
+    //        }
+    //    }
 
     }
 }
