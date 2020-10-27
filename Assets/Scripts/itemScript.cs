@@ -85,10 +85,11 @@ public class itemScript : MonoBehaviour
 
             
 
-            if (scriptHealth.getHealth() < scriptHealth.getMaxHealth())
+            if (scriptHealth.getHealth() + item.health < scriptHealth.getMaxHealth())
             {
                 int health = scriptHealth.getHealth();
                 health += item.health;
+               // Debug.Log(item.health);
                 scriptHealth.setHealth(health);
             }
 

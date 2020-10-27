@@ -7,6 +7,9 @@ TagManager:
   - Weapon
   - Enemy
   - wallOfDeath
+  - sky
+  - background
+  - foreground
   layers:
   - Default
   - TransparentFX

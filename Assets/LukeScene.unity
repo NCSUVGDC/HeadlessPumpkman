@@ -123,6 +123,39 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &18577089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 18577090}
+  m_Layer: 0
+  m_Name: Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &18577090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18577089}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1669480420}
+  - {fileID: 202837608}
+  - {fileID: 1157041426}
+  m_Father: {fileID: 939727816}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &41369358
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,8 +377,8 @@ GameObject:
   - component: {fileID: 202837610}
   - component: {fileID: 202837609}
   m_Layer: 0
-  m_Name: nightSky (1)
-  m_TagString: Untagged
+  m_Name: nightSky_post
+  m_TagString: sky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,11 +391,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202837607}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 73, y: 0, z: 0}
+  m_LocalPosition: {x: 119.100006, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1157041426}
-  m_RootOrder: 0
+  m_Father: {fileID: 18577090}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &202837609
 MonoBehaviour:
@@ -376,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9234f98a420fb43e6a1015a3a7d41ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2052461396}
+  mainCamera: {fileID: 2052461399}
   parallax: 1
 --- !u!212 &202837610
 SpriteRenderer:
@@ -429,6 +462,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &498457768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 498457769}
+  m_Layer: 0
+  m_Name: Back
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &498457769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498457768}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 507669670}
+  - {fileID: 2125926949}
+  - {fileID: 1602946865}
+  m_Father: {fileID: 939727816}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &507669669
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +508,7 @@ GameObject:
   - component: {fileID: 507669671}
   m_Layer: 0
   m_Name: mountainBack (1)
-  m_TagString: Untagged
+  m_TagString: background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -455,10 +521,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507669669}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 73, y: 0, z: 0}
+  m_LocalPosition: {x: 119.100006, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2125926949}
+  m_Father: {fileID: 498457769}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &507669671
@@ -473,7 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9234f98a420fb43e6a1015a3a7d41ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2052461396}
+  mainCamera: {fileID: 2052461399}
   parallax: 0.6
 --- !u!212 &507669672
 SpriteRenderer:
@@ -539,7 +605,7 @@ GameObject:
   - component: {fileID: 632882391}
   m_Layer: 0
   m_Name: mountainFore
-  m_TagString: Untagged
+  m_TagString: foreground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -552,13 +618,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632882389}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 46.100002, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2072700252}
-  - {fileID: 1439009756}
-  m_Father: {fileID: 939727816}
-  m_RootOrder: 1
+  m_Children: []
+  m_Father: {fileID: 1773023820}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &632882391
 MonoBehaviour:
@@ -572,7 +636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9234f98a420fb43e6a1015a3a7d41ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2052461396}
+  mainCamera: {fileID: 2052461399}
   parallax: 0.2
 --- !u!212 &632882392
 SpriteRenderer:
@@ -744,6 +808,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 939727816}
+  - component: {fileID: 939727817}
   m_Layer: 0
   m_Name: background
   m_TagString: Untagged
@@ -762,12 +827,25 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 1}
   m_Children:
-  - {fileID: 1157041426}
-  - {fileID: 632882390}
-  - {fileID: 2125926949}
+  - {fileID: 18577090}
+  - {fileID: 498457769}
+  - {fileID: 1773023820}
   m_Father: {fileID: 2052461400}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &939727817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939727815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b4718811b9a4cab929464e2e6600c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2056038740}
 --- !u!1 &1157041425
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +859,7 @@ GameObject:
   - component: {fileID: 1157041427}
   m_Layer: 0
   m_Name: nightSky
-  m_TagString: Untagged
+  m_TagString: sky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -794,13 +872,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157041425}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 46.100002, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 202837608}
-  - {fileID: 1669480420}
-  m_Father: {fileID: 939727816}
-  m_RootOrder: 0
+  m_Children: []
+  m_Father: {fileID: 18577090}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1157041427
 MonoBehaviour:
@@ -814,7 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9234f98a420fb43e6a1015a3a7d41ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2052461396}
+  mainCamera: {fileID: 2052461399}
   parallax: 1
 --- !u!212 &1157041428
 SpriteRenderer:
@@ -1046,7 +1122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253208334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.63, y: -3.36, z: 0}
+  m_LocalPosition: {x: -1.47, y: -3.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1064,7 +1140,7 @@ GameObject:
   - component: {fileID: 1312712257}
   - component: {fileID: 1312712256}
   - component: {fileID: 1312712255}
-  - component: {fileID: 1312712259}
+  - component: {fileID: 1312712260}
   m_Layer: 0
   m_Name: Damage
   m_TagString: Untagged
@@ -1148,7 +1224,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1312712259
+--- !u!114 &1312712260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1157,9 +1233,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1312712254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cc832e1f65f04010badd5e0cef049ea, type: 3}
+  m_Script: {fileID: 11500000, guid: c184bffc1957b460684bae4dc24ca760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: a0ff212aef4d54d6eb14ca14362a6996, type: 2}
+  isDestroyed: 0
 --- !u!1 &1416039547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,7 +1342,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416039547}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 0, z: 0}
+  m_LocalPosition: {x: -10, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 8.9, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1283,7 +1361,7 @@ GameObject:
   - component: {fileID: 1439009757}
   m_Layer: 0
   m_Name: mountainFore (2)
-  m_TagString: Untagged
+  m_TagString: foreground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1296,11 +1374,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439009755}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -71.9, y: 0, z: 0}
+  m_LocalPosition: {x: -25.8, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 632882390}
-  m_RootOrder: 1
+  m_Father: {fileID: 1773023820}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1439009757
 MonoBehaviour:
@@ -1314,7 +1392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9234f98a420fb43e6a1015a3a7d41ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2052461396}
+  mainCamera: {fileID: 2052461399}
   parallax: 0.2
 --- !u!212 &1439009758
 SpriteRenderer:
@@ -1456,8 +1534,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456160122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.23, y: -5, z: 0}
-  m_LocalScale: {x: 41.84, y: 1, z: 1}
+  m_LocalPosition: {x: -2, y: -5, z: 0}
+  m_LocalScale: {x: 73.79739, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1513,7 +1591,7 @@ GameObject:
   - component: {fileID: 1602946866}
   m_Layer: 0
   m_Name: mountainBack (2)
-  m_TagString: Untagged
+  m_TagString: background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1526,11 +1604,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602946864}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -73, y: 0, z: 0}
+  m_LocalPosition: {x: -26.899998, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2125926949}
-  m_RootOrder: 1
+  m_Father: {fileID: 498457769}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1602946866
 MonoBehaviour:
@@ -1544,7 +1622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9234f98a420fb43e6a1015a3a7d41ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2052461396}
+  mainCamera: {fileID: 2052461399}
   parallax: 0.6
 --- !u!212 &1602946867
 SpriteRenderer:
@@ -1684,8 +1762,8 @@ GameObject:
   - component: {fileID: 1669480422}
   - component: {fileID: 1669480421}
   m_Layer: 0
-  m_Name: nightSky (2)
-  m_TagString: Untagged
+  m_Name: nightSky_pre
+  m_TagString: sky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1698,11 +1776,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669480419}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -73, y: 0, z: 0}
+  m_LocalPosition: {x: -26.899998, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1157041426}
-  m_RootOrder: 1
+  m_Father: {fileID: 18577090}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1669480421
 MonoBehaviour:
@@ -1716,7 +1794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9234f98a420fb43e6a1015a3a7d41ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2052461396}
+  mainCamera: {fileID: 2052461399}
   parallax: 1
 --- !u!212 &1669480422
 SpriteRenderer:
@@ -1769,6 +1847,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1773023819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1773023820}
+  m_Layer: 0
+  m_Name: Fore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1773023820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773023819}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1439009756}
+  - {fileID: 2072700252}
+  - {fileID: 632882390}
+  m_Father: {fileID: 939727816}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1952724029
 GameObject:
   m_ObjectHideFlags: 0
@@ -2104,7 +2215,7 @@ GameObject:
   - component: {fileID: 2072700253}
   m_Layer: 0
   m_Name: mountainFore (1)
-  m_TagString: Untagged
+  m_TagString: foreground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2117,11 +2228,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2072700251}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 71.9, y: 0, z: 0}
+  m_LocalPosition: {x: 118, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 632882390}
-  m_RootOrder: 0
+  m_Father: {fileID: 1773023820}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2072700253
 MonoBehaviour:
@@ -2135,7 +2246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9234f98a420fb43e6a1015a3a7d41ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2052461396}
+  mainCamera: {fileID: 2052461399}
   parallax: 0.2
 --- !u!212 &2072700254
 SpriteRenderer:
@@ -2267,7 +2378,7 @@ GameObject:
   - component: {fileID: 2125926950}
   m_Layer: 0
   m_Name: mountainBack
-  m_TagString: Untagged
+  m_TagString: background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2280,13 +2391,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125926948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 46.100002, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 507669670}
-  - {fileID: 1602946865}
-  m_Father: {fileID: 939727816}
-  m_RootOrder: 2
+  m_Children: []
+  m_Father: {fileID: 498457769}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2125926950
 MonoBehaviour:
@@ -2300,7 +2409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9234f98a420fb43e6a1015a3a7d41ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2052461396}
+  mainCamera: {fileID: 2052461399}
   parallax: 0.6
 --- !u!212 &2125926951
 SpriteRenderer:
