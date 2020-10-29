@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: speedBoost
   m_EditorClassIdentifier: 
   name: 
-  health: 0
+  health: -1
   speed: 2
   jump: 0
   hasCooldown: 1

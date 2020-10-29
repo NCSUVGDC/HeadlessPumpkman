@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - wallOfDeath
   - Terrain
+  - sky
+  - background
+  - foreground
   layers:
   - Default
   - TransparentFX
@@ -17,9 +20,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Platforms
+  - Background
+  - Foreground
   - 
   - 
   - 
@@ -44,4 +47,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 704648415
+    locked: 0
+  - name: Platforms
+    uniqueID: 2338623349
+    locked: 0
+  - name: Foreground
+    uniqueID: 1667178741
     locked: 0
