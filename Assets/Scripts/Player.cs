@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public Rigidbody playerBody;
-
     public GameObject meleeWeapon;
+    public Text coinCounter;
 
     public int health = 100;
 
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
     private float pushForce = 0;
     private bool isFacingRight = true;
 
-    public float appliedFriction = 0.6f;
+    private float coinCount = 0;
 
     private void Start()
     {
@@ -66,7 +67,10 @@ public class Player : MonoBehaviour
         }
         else
         {
-            MovePlayerFromInput(Input.GetAxisRaw("Horizontal"));
+            if (meleeState == AttackState.Ready || meleeState == AttackState.Cooldown)
+            {
+                MovePlayerFromInput(Input.GetAxisRaw("Horizontal"));
+            }
         }
 
         if (meleeState == AttackState.Ready || meleeState == AttackState.Cooldown) //Prevents the player from turning around during a melee attack
@@ -314,5 +318,12 @@ public class Player : MonoBehaviour
                 pushForce = force; //Pushes right, AWAY from the enemy
             }
         }
+    }
+
+    //A setter method for the player's coin count. Can increment and decrement the counter, for when a coin is collected or spent, respectively.
+    public void ChangeCoinCount(float input)
+    {
+        coinCount += input;
+        coinCounter.text = coinCount.ToString();
     }
 }

@@ -10,36 +10,15 @@ public class Enemy : MonoBehaviour
     public float detectionRange = 15;
     public float speed = 5;
     public float jumpHeight = 3;
-    public bool goRight = true;
-
-    //Decrements this enemy's health by the specified integer value
-    //Returns 'true' if this call results in this enemy's death, for melee speed boost purposes
-    public bool TakeDamage(int damageReceived)
-    {
-        if (gameObject != null)
-        {
-            health -= damageReceived;
-            if (health <= 0)
-            {
-                Destroy(gameObject);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        Debug.Log("An enemy that does not exist just tried to TakeDamage().");
-        return false;
-    }
-
-    // Update is called once per frame
+    private bool goRight = true;
+    public float turnAroundTime = 5;
 
     void Start()
     {
-        InvokeRepeating("switchDirection", 5, 5);
+        player = GameObject.Find("Player").GetComponent<Rigidbody>();
+        InvokeRepeating("switchDirection", turnAroundTime, turnAroundTime);
     }
+
     void FixedUpdate()
     {
         if (player != null)
@@ -67,22 +46,45 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //Decrements this enemy's health by the specified integer value
+    //Returns 'true' if this call results in this enemy's death, for melee speed boost purposes
+    public bool TakeDamage(int damageReceived)
+    {
+        if (gameObject != null)
+        {
+            health -= damageReceived;
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        Debug.Log("An enemy that does not exist just tried to TakeDamage().");
+        return false;
+    }
+
     private Vector3 patrol()
     {
-        Debug.Log("Goright's value is: " + goRight);
+        //Debug.Log("Goright's value is: " + goRight);
         if (goRight)
         {
-            Debug.Log("Patrol right");
+            //Debug.Log("Patrol right");
             gameObject.transform.rotation = Quaternion.LookRotation(Vector3.right);
             return new Vector3(speed, self.velocity.y, self.velocity.z);
         }
         else
         {
-            Debug.Log("Patrol left");
+            //Debug.Log("Patrol left");
             gameObject.transform.rotation = Quaternion.LookRotation(-Vector3.right);
             return new Vector3(-speed, self.velocity.y, self.velocity.z);
         }
     }
+
     private void switchDirection()
     {
         goRight = !goRight;
