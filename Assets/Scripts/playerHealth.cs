@@ -18,8 +18,8 @@ public class playerHealth : MonoBehaviour
 
     private void Start()
     {
-        fullHp = Resources.Load<Sprite>("HealthIcon1");
-        emptyHp = Resources.Load<Sprite>("HealthIcon2");
+        fullHp = Resources.Load<Sprite>("Sprites/HealthIcon1");
+        emptyHp = Resources.Load<Sprite>("Sprites/HealthIcon2");
     }
     
 
