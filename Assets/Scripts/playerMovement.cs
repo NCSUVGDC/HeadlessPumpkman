@@ -106,7 +106,7 @@ public class playerMovement : MonoBehaviour
             
             if (Time.time < timestamp + item.coolDuration)
             {
-                Debug.Log("Time: " + Time.time + " | timestamp: " + timestamp + " | " + item.coolDuration);
+                //Debug.Log("Time: " + Time.time + " | timestamp: " + timestamp + " | " + item.coolDuration);
 
                 int speed = item.speed;
                 setSpeedMod(speed);

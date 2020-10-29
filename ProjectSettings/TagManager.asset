@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - wallOfDeath
   - Terrain
+  - sky
+  - background
+  - foreground
   layers:
   - Default
   - TransparentFX
