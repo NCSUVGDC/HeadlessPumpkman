@@ -329,14 +329,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 657745033}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80103a72251b94f579ee454e8c9818bf, type: 3}
+  m_Script: {fileID: 11500000, guid: b0aee3d0b79eb8247906b23147b1411a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
   player: {fileID: 1198496268}
   self: {fileID: 657745038}
   detectionRange: 15
   speed: 5
-  jumpHeight: 3
+  jumpHeight: 8
+  jumpInterval: 6
   goRight: 1
 --- !u!1 &1198496267
 GameObject:

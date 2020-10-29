@@ -9,7 +9,8 @@ public class Enemy : MonoBehaviour
     public Rigidbody self;
     public float detectionRange = 15;
     public float speed = 5;
-    public float jumpHeight = 3;
+    public float jumpHeight = 6;
+    public float jumpInterval = 6;
     public bool goRight = true;
 
     //Decrements this enemy's health by the specified integer value
@@ -39,6 +40,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         InvokeRepeating("switchDirection", 5, 5);
+        InvokeRepeating("jump", jumpInterval, jumpInterval);
     }
     void FixedUpdate()
     {
@@ -82,6 +84,11 @@ public class Enemy : MonoBehaviour
             gameObject.transform.rotation = Quaternion.LookRotation(-Vector3.right);
             return new Vector3(-speed, self.velocity.y, self.velocity.z);
         }
+    }
+
+    private void jump()
+    {
+        self.velocity = new Vector3(self.velocity.x, jumpHeight, self.velocity.z);
     }
     private void switchDirection()
     {
