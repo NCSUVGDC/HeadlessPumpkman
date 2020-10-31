@@ -5,27 +5,43 @@ using UnityEngine;
 public class RangedWeapon : MonoBehaviour
 {
     public int damageVal = 50;
-    public float blastRadius = 0.5f;
+    [Header("blastRadius is 2 by default")]
+    public float blastRadius = 2;
     public float blastDuration = 1;
     public float horSpeed = 1.5f;
-    public float horOffset = 1;
-    public float horScaleFactor = 2;
+    //public float horOffset = 1;
+    //public float horScaleFactor = 2;
     public float verSpeed = 1.5f;
-    public float gravForce = 5;
+    public float frameGravity = 5;
 
     private bool hasExploded = false;
+    private bool isGoingRight = true;
 
     private Vector3 startPos;
-
+    
+    private playerMovement movementManager;
     private Rigidbody playerBody;
     public GameObject myExplosion;
 
     private void Start()
     {
+        movementManager = GameObject.Find("Player").GetComponent<playerMovement>();
         playerBody = GameObject.Find("Player").GetComponent<Rigidbody>();
         startPos = new Vector3(playerBody.position.x, playerBody.position.y, 0);
         gameObject.transform.position = startPos;
-        gameObject.GetComponent<Rigidbody>().velocity = new Vector3(playerBody.velocity.x + horOffset * horScaleFactor, verSpeed, 0);
+        myExplosion.gameObject.transform.localScale = new Vector3(blastRadius, blastRadius, blastRadius);
+        
+
+        isGoingRight = movementManager.getIsFacingRight();
+
+        if (isGoingRight)
+        {
+            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(horSpeed, verSpeed, 0);
+        }
+        else //If the player is facing left...
+        {
+            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(-horSpeed, verSpeed, 0);
+        }
     }
 
     private void FixedUpdate()
@@ -34,7 +50,8 @@ public class RangedWeapon : MonoBehaviour
         {
             float prevVelX = gameObject.GetComponent<Rigidbody>().velocity.x;
             float prevVelY = gameObject.GetComponent<Rigidbody>().velocity.y;
-            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(prevVelX, prevVelY - gravForce, 0);
+            //Because horSpeed becomes negative in Start() if the player is facing left, this line works for both directions
+            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(prevVelX, prevVelY - frameGravity, 0);
         }
     }
 
@@ -48,6 +65,7 @@ public class RangedWeapon : MonoBehaviour
 
     private void Explode()
     {
+        Debug.Log("Explode()");
         myExplosion.GetComponent<Explosion>().Activate();
         gameObject.GetComponent<SphereCollider>().enabled = false;
         gameObject.GetComponent<MeshRenderer>().enabled = false;

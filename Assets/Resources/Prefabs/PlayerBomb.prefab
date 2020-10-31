@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7119491022473561518}
   - component: {fileID: 5361630434141958037}
   - component: {fileID: 3499296106718185209}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ SphereCollider:
   m_GameObject: {fileID: 1057384778027644999}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 2151662068401199225}
   - component: {fileID: 4858147351384936421}
   - component: {fileID: -5341868210416626110}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PlayerBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,8 +138,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2537425634465729082}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.6775312, y: -3.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1772658836364026817}
   m_Father: {fileID: 0}
@@ -236,11 +236,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageVal: 50
-  blastRadius: 0.5
-  blastDuration: 1
-  horSpeed: 10
-  horOffset: 1
-  horScaleFactor: 1
+  blastRadius: 2
+  blastDuration: 0.5
+  horSpeed: 20
   verSpeed: 40
-  gravForce: 3
+  frameGravity: 5
   myExplosion: {fileID: 1057384778027644999}
