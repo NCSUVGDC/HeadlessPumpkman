@@ -29,6 +29,7 @@ public class Explosion : MonoBehaviour
     {
         if (other.tag.Equals("Enemy"))
         {
+            Debug.Log("OnTriggerEnter()");
             other.GetComponent<Enemy>().TakeDamage(myBomb.GetComponent<RangedWeapon>().damageVal);
         }
     }

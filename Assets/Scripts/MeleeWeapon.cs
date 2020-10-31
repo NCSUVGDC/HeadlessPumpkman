@@ -15,6 +15,7 @@ public class MeleeWeapon : MonoBehaviour
     public ForceMode fm = ForceMode.Impulse;
 
     public Player player;
+    public playerMovement movementManager;
     public Rigidbody playerBody;
 
     private void OnTriggerEnter(Collider other)
@@ -26,16 +27,16 @@ public class MeleeWeapon : MonoBehaviour
 
             if (enemyKilled)
             {
-                player.PushPlayer(true, speedBoostForce);
+                movementManager.PushPlayer(true, speedBoostForce);
             }
             else
             {
-                player.PushPlayer(false, knockBackForce);
+                movementManager.PushPlayer(false, knockBackForce);
             }
         }
         if (other.tag.Equals("Terrain"))
         {
-            player.PushPlayer(true, speedBoostForce);
+            movementManager.PushPlayer(true, speedBoostForce);
         }
         if(other.tag.Equals("Crate"))
         {

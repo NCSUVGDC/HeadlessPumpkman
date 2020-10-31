@@ -19,19 +19,13 @@ public class itemScript : MonoBehaviour
     {
        hasCooldown = item.hasCooldown;
     }
-    private void FixedUpdate()
-    {
-       
-    }
-
-    
 
     private void OnTriggerEnter(Collider other)
     {
         
         if (other != null && other.CompareTag("Player"))
         {
-            GameObject player = GameObject.Find("Player");
+            GameObject player = other.gameObject;
             playerMovement scriptMove = (playerMovement)player.GetComponent(typeof(playerMovement));
             playerHealth scriptHealth = (playerHealth)player.GetComponent(typeof(playerHealth));
 
@@ -89,7 +83,7 @@ public class itemScript : MonoBehaviour
             {
                 int health = scriptHealth.getHealth();
                 health += item.health;
-               // Debug.Log(item.health);
+                //Debug.Log(item.health);
                 scriptHealth.setHealth(health);
             }
 

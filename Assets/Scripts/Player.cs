@@ -5,15 +5,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public playerMovement movementManager;
     public Rigidbody playerBody;
     public GameObject meleeWeapon;
     public Text coinCounter;
-
-    public int health = 100;
-
-    public float frameAcceleration = 0.5f;
-    public float topSpeed = 10;
-    public float speed = 10;
+    
     public float meleeReach = 2;
 
     public enum AttackState
@@ -35,59 +31,35 @@ public class Player : MonoBehaviour
     public float rangedCooldownTime = 1;
     private float rangedTimer = 0;
 
-    public float speedBoostTime = 1;
-    public float knockBackTime = 1;
-    private float pushTimer = 0;
-
-    private bool isBeingPushed = false;
-    private float pushForce = 0;
-    private bool isFacingRight = true;
-
+    public float turnAroundDeadzone = 0.01f;
     private float coinCount = 0;
 
     private void Start()
     {
-        //Faces the player towards the right when they spawn in, because isFacingRight defaults to true
-        gameObject.transform.rotation = Quaternion.LookRotation(Vector3.right);
+        coinCounter = GameObject.Find("Coin Count").GetComponent<Text>();
     }
 
     //Updates at a fixed interval, regardless of framerate
     private void FixedUpdate()
     {
         //PLAYER MOVEMENT
-
-
-        //This syntax reads: if isBeingPushed, then pushForce... else, Input.GetAxis() * speed
-        //float movement = (isBeingPushed ? pushForce : Input.GetAxis("Horizontal") * speed * appliedFriction);
-        //playerBody.velocity = new Vector3(playerBody.velocity.x + movement - playerBody.velocity.x * appliedFriction, playerBody.velocity.y, playerBody.velocity.z);
-
-        if (isBeingPushed)
-        {
-            playerBody.velocity = new Vector3(pushForce, playerBody.velocity.y, playerBody.velocity.z);
-        }
-        else
-        {
-            if (meleeState == AttackState.Ready || meleeState == AttackState.Cooldown)
-            {
-                MovePlayerFromInput(Input.GetAxisRaw("Horizontal"));
-            }
-        }
+        
 
         if (meleeState == AttackState.Ready || meleeState == AttackState.Cooldown) //Prevents the player from turning around during a melee attack
         {
-            if (playerBody.velocity.x > 0) //If moving right...
+            if (playerBody.velocity.x > 0 + turnAroundDeadzone || movementManager.getIsFacingRight()) //If substantially moving right, or you're already facing that way...
             {
                 //Makes the player character face right, then repositions the sword hitbox accordingly
                 gameObject.transform.rotation = Quaternion.LookRotation(Vector3.right);
                 meleeWeapon.transform.position = new Vector3(gameObject.transform.position.x + meleeReach, gameObject.transform.position.y, 0);
-                isFacingRight = true;
+                movementManager.setIsFacingRight(true);
             }
-            if (playerBody.velocity.x < 0) //If moving left...
+            if (playerBody.velocity.x < 0 - turnAroundDeadzone || !movementManager.getIsFacingRight()) //If substantially moving left, or you're already facing that way...
             {
                 //Makes the player character face left, then repositions the sword hitbox accordingly
                 gameObject.transform.rotation = Quaternion.LookRotation(Vector3.left);
                 meleeWeapon.transform.position = new Vector3(gameObject.transform.position.x - meleeReach, gameObject.transform.position.y, 0);
-                isFacingRight = false;
+                movementManager.setIsFacingRight(false);
             }
         }
         
@@ -131,80 +103,6 @@ public class Player : MonoBehaviour
         {
             RangedManager(rangedState);
         }
-        if (isBeingPushed)
-        {
-            PushManager();
-        }
-    }
-
-    void MovePlayerFromInput(float input)
-    {
-        switch (input)
-        {
-            case 1:
-                {
-                    AcceleratePlayer();
-                    if (playerBody.velocity.x > topSpeed + frameAcceleration)
-                    {
-                        DeceleratePlayer();
-                    }
-                    else if (playerBody.velocity.x > topSpeed)
-                    {
-                        playerBody.velocity = new Vector3(topSpeed, playerBody.velocity.y, playerBody.velocity.z);
-                    }
-                }
-                break;
-            case 0:
-                {
-                    if (playerBody.velocity.x > 0)
-                    {
-                        DeceleratePlayer();
-                        if (playerBody.velocity.x < 0)
-                        {
-                            playerBody.velocity = new Vector3(0, playerBody.velocity.y, playerBody.velocity.z);
-                        }
-                    }
-                    else if (playerBody.velocity.x < 0)
-                    {
-                        AcceleratePlayer();
-                        if (playerBody.velocity.x > 0)
-                        {
-                            playerBody.velocity = new Vector3(0, playerBody.velocity.y, playerBody.velocity.z);
-                        }
-                    }
-                }
-                break;
-            case -1:
-                {
-                    DeceleratePlayer();
-                    if (playerBody.velocity.x < -topSpeed - frameAcceleration)
-                    {
-                        AcceleratePlayer();
-                    }
-                    else if (playerBody.velocity.x < -topSpeed)
-                    {
-                        playerBody.velocity = new Vector3(-topSpeed, playerBody.velocity.y, playerBody.velocity.z);
-                    }
-                }
-                break;
-            default:
-                {
-                    Debug.Log("Input.GetAxisRaw returned a non-integer.");
-                }
-                break;
-        }
-    }
-
-    void AcceleratePlayer()
-    {
-        playerBody.velocity = new Vector3(playerBody.velocity.x + frameAcceleration,
-                                                        playerBody.velocity.y, playerBody.velocity.z);
-    }
-
-    void DeceleratePlayer()
-    {
-        playerBody.velocity = new Vector3(playerBody.velocity.x - frameAcceleration,
-                                                        playerBody.velocity.y, playerBody.velocity.z);
     }
 
     //Responsible for the Sword Swing's states, timers, and activation.
@@ -278,52 +176,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    void PushManager()
-    {
-        pushTimer -= Time.deltaTime;
-
-        if (pushTimer <= 0) //If the pushing timer has expired...
-        {
-            isBeingPushed = false;
-            //inputOverride = true;
-        }
-    }
-
-    public void PushPlayer(bool isSpeedBoost, float force)
-    {
-        isBeingPushed = true;
-        if (isFacingRight)
-        {
-            if (isSpeedBoost)
-            {
-                pushTimer = speedBoostTime;
-                pushForce = force; //Pushes right, TOWARDS the enemy
-            }
-            else //KnockBack
-            {
-                pushTimer = knockBackTime;
-                pushForce = -force; //Pushes left, AWAY from the enemy
-            }
-        }
-        else //Facing left
-        {
-            if (isSpeedBoost)
-            {
-                pushTimer = speedBoostTime;
-                pushForce = -force; //Pushes left, TOWARDS the enemy
-            }
-            else //KnockBack
-            {
-                pushTimer = knockBackTime;
-                pushForce = force; //Pushes right, AWAY from the enemy
-            }
-        }
-    }
-
     //A setter method for the player's coin count. Can increment and decrement the counter, for when a coin is collected or spent, respectively.
     public void ChangeCoinCount(float input)
     {
         coinCount += input;
         coinCounter.text = coinCount.ToString();
+    }
+
+    public AttackState GetMeleeState()
+    {
+        return meleeState;
     }
 }
