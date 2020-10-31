@@ -37,5 +37,11 @@ public class MeleeWeapon : MonoBehaviour
         {
             player.PushPlayer(true, speedBoostForce);
         }
+        if(other.tag.Equals("Crate"))
+        {
+            other.GetComponent<Crate>().destroyAnimation();
+            other.GetComponent<Crate>().setAnimState(true);
+
+        }
     }
 }
