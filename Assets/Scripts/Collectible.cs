@@ -8,7 +8,6 @@ public class Collectible : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter");
         if (other.tag.Equals("Player"))
         {
             other.GetComponent<Player>().ChangeCoinCount(value);
