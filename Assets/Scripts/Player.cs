@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
                 case (AttackState.Windup): //If the Windup timer has expired...
                     {
                         meleeWeapon.GetComponent<BoxCollider>().enabled = true;
-                        meleeWeapon.GetComponent<MeshRenderer>().enabled = true;
+                        //meleeWeapon.GetComponent<MeshRenderer>().enabled = true;
                         //gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Orange", typeof(Material)) as Material;
                         meleeState = AttackState.Attacking;
                         meleeTimer = meleeAttackingTime;
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
                 case (AttackState.Attacking): //If the Attacking timer has expired...
                     {
                         meleeWeapon.GetComponent<BoxCollider>().enabled = false;
-                        meleeWeapon.GetComponent<MeshRenderer>().enabled = false;
+                        //meleeWeapon.GetComponent<MeshRenderer>().enabled = false;
                         //gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Red", typeof(Material)) as Material;
                         meleeState = AttackState.Cooldown;
                         meleeTimer = meleeCooldownTime;
@@ -152,6 +152,7 @@ public class Player : MonoBehaviour
                         //gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Orange", typeof(Material)) as Material;
                         rangedState = AttackState.Attacking;
                         rangedTimer = rangedAttackingTime;
+                        
                     }
                     break;
                 case (AttackState.Attacking): //If the Attacking timer has expired...

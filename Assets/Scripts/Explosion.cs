@@ -43,6 +43,6 @@ public class Explosion : MonoBehaviour
     {
         isActive = true;
         gameObject.GetComponent<SphereCollider>().enabled = true;
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        //gameObject.GetComponent<MeshRenderer>().enabled = true;
     }
 }

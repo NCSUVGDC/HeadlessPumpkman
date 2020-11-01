@@ -68,7 +68,7 @@ public class RangedWeapon : MonoBehaviour
         Debug.Log("Explode()");
         myExplosion.GetComponent<Explosion>().Activate();
         gameObject.GetComponent<SphereCollider>().enabled = false;
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        //gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         hasExploded = true;
     }
