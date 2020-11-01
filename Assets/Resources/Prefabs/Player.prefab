@@ -140,6 +140,7 @@ MonoBehaviour:
   jumpheight: 7
   speedModifier: 0
   jumpModifier: 0
+  animator: {fileID: 0}
 --- !u!114 &6566648146323611150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +181,7 @@ MonoBehaviour:
   rangedAttackingTime: 0.5
   rangedCooldownTime: 0.5
   turnAroundDeadzone: 0.01
+  animator: {fileID: 0}
 --- !u!1 &6566648146347970580
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +211,7 @@ Transform:
   m_GameObject: {fileID: 6566648146347970580}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1.5, z: 2}
+  m_LocalScale: {x: 1.6, y: 1.54, z: 2}
   m_Children: []
   m_Father: {fileID: 6566648146323611141}
   m_RootOrder: 0

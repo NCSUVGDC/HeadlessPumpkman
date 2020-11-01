@@ -30,6 +30,8 @@ public class playerMovement : MonoBehaviour
     public float jumpModifier = 0f;
     //private bool poweredUp = false;
     private bool hasPowerUp = false;
+
+    public Animator animator;
     
     float timestamp;
 
@@ -93,6 +95,8 @@ public class playerMovement : MonoBehaviour
             PushManager();
         }
         startCooldown(powerUp);
+        
+        animator.SetFloat("speed", Mathf.Abs(playerBody.velocity.x));
     }
 
     void MovePlayerFromInput(float input)
