@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public float jumpHeight = 6;
     public float jumpInterval = 6;
     public bool goRight = true;
+    public float GCDistance = 1.1f;
 
     public Animator animator;
 
@@ -40,8 +41,6 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    // Update is called once per frame
-
     void Start()
     {
         InvokeRepeating("switchDirection", turnAroundTime, turnAroundTime);
@@ -56,22 +55,41 @@ public class Enemy : MonoBehaviour
             Vector3 playerLoc = player.position - gameObject.transform.position;
             playerLoc.y = 0;
 
+            if (!NearbyGroundCheck())
+            {
+                Debug.Log("cliff");
+            }
+
             if (playerLoc.magnitude <= detectionRange)
             {
-                //Debug.Log("Chasing. Distance between is: " + playerLoc.magnitude);
-                Quaternion direction;
-                direction = Quaternion.LookRotation(playerLoc);
-                gameObject.transform.rotation = direction;
+                if (NearbyGroundCheck())
+                {
+                    //Debug.Log("Chasing. Distance between is: " + playerLoc.magnitude);
+                    Quaternion direction;
+                    direction = Quaternion.LookRotation(playerLoc);
+                    gameObject.transform.rotation = direction;
 
-                Vector3 vel = gameObject.transform.forward * speed;
-                vel.y = self.velocity.y;
-                self.velocity = vel;
+                    Vector3 vel = gameObject.transform.forward * speed;
+                    vel.y = self.velocity.y;
+                    self.velocity = vel;
+                }
+                else
+                {
+                    self.velocity = new Vector3(0, self.velocity.y,0);
+                }
+                
             }
             else
             {
                 //normal patrol behavior
                 Vector3 vel = patrol();
                 self.velocity = vel;
+                if (!NearbyGroundCheck())
+                {
+                    CancelInvoke();
+                    switchDirection();
+                    InvokeRepeating("switchDirection", turnAroundTime, turnAroundTime);
+                }
             }
         }
     }
@@ -90,6 +108,32 @@ public class Enemy : MonoBehaviour
             //Debug.Log("Patrol left");
             gameObject.transform.rotation = Quaternion.LookRotation(-Vector3.right);
             return new Vector3(-speed, self.velocity.y, self.velocity.z);
+        }
+    }
+
+    private bool NearbyGroundCheck()
+    {
+        
+        
+        Vector3 dir;
+        if (goRight)
+        {
+            dir = new Vector3(0.5f, -1, 0);
+        }
+        else
+        {
+            dir = new Vector3(-0.5f, -1, 0);
+        }
+
+        RaycastHit other;
+        bool isOverSomething = Physics.Raycast(self.position, dir, out other, GCDistance);
+        if (isOverSomething && other.collider.gameObject.layer.Equals(8))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

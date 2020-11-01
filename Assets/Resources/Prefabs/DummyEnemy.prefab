@@ -135,3 +135,5 @@ MonoBehaviour:
   jumpHeight: 3
   jumpInterval: 6
   goRight: 1
+  GCDistance: 2
+  animator: {fileID: 0}
