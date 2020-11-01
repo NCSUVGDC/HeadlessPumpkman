@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     public float turnAroundDeadzone = 0.01f;
     private float coinCount = 0;
 
+    public Animator animator;
+
     private void Start()
     {
         //coinCounter = GameObject.Find("Coin Count").GetComponent<Text>();
@@ -66,7 +68,7 @@ public class Player : MonoBehaviour
         {
             meleeState = AttackState.Windup;
             meleeTimer = meleeWindupTime;
-            gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
+            //gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
             //Swing animation would begin here
         }
         if ((Input.GetKeyUp(KeyCode.Z)) || Input.GetKeyUp(KeyCode.O))
@@ -78,13 +80,19 @@ public class Player : MonoBehaviour
         {
             rangedState = AttackState.Windup;
             rangedTimer = rangedWindupTime;
-            gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
+            //gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
         }
 
         //ATTACK TIMERS
         if (meleeState != AttackState.Ready)
         {
             MeleeManager(meleeState);
+
+            animator.SetBool("isAttacking", true);
+        }
+        else
+        {
+            animator.SetBool("isAttacking", false);
         }
         if (rangedState != AttackState.Ready)
         {
@@ -104,7 +112,7 @@ public class Player : MonoBehaviour
                     {
                         meleeWeapon.GetComponent<BoxCollider>().enabled = true;
                         meleeWeapon.GetComponent<MeshRenderer>().enabled = true;
-                        gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Orange", typeof(Material)) as Material;
+                        //gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Orange", typeof(Material)) as Material;
                         meleeState = AttackState.Attacking;
                         meleeTimer = meleeAttackingTime;
                     }
@@ -113,14 +121,14 @@ public class Player : MonoBehaviour
                     {
                         meleeWeapon.GetComponent<BoxCollider>().enabled = false;
                         meleeWeapon.GetComponent<MeshRenderer>().enabled = false;
-                        gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Red", typeof(Material)) as Material;
+                        //gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Red", typeof(Material)) as Material;
                         meleeState = AttackState.Cooldown;
                         meleeTimer = meleeCooldownTime;
                     }
                     break;
                 case (AttackState.Cooldown): //If the Cooldown timer has expired...
                     {
-                        gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Green", typeof(Material)) as Material;
+                        //gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Green", typeof(Material)) as Material;
                         meleeState = AttackState.Ready;
                     }
                     break;
@@ -141,21 +149,21 @@ public class Player : MonoBehaviour
                 case (AttackState.Windup): //If the Windup timer has expired...
                     {
                         Instantiate(Resources.Load("Prefabs/PlayerBomb"));
-                        gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Orange", typeof(Material)) as Material;
+                        //gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Orange", typeof(Material)) as Material;
                         rangedState = AttackState.Attacking;
                         rangedTimer = rangedAttackingTime;
                     }
                     break;
                 case (AttackState.Attacking): //If the Attacking timer has expired...
                     {
-                        gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Red", typeof(Material)) as Material;
+                        //gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Red", typeof(Material)) as Material;
                         rangedState = AttackState.Cooldown;
                         rangedTimer = rangedCooldownTime;
                     }
                     break;
                 case (AttackState.Cooldown): //If the Cooldown timer has expired...
                     {
-                        gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Green", typeof(Material)) as Material;
+                       // gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Green", typeof(Material)) as Material;
                         rangedState = AttackState.Ready;
                     }
                     break;

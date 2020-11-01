@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     public float jumpInterval = 6;
     public bool goRight = true;
 
+    public Animator animator;
+
     //Decrements this enemy's health by the specified integer value
     //Returns 'true' if this call results in this enemy's death, for melee speed boost purposes
     public bool TakeDamage(int damageReceived)
@@ -23,7 +25,8 @@ public class Enemy : MonoBehaviour
             health -= damageReceived;
             if (health <= 0)
             {
-                Destroy(gameObject);
+                self.GetComponent<CapsuleCollider>().enabled = false;
+                animator.SetBool("destroyEnemy", true);
                 return true;
             }
             else
