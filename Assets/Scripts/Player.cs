@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        coinCounter = GameObject.Find("Coin Count").GetComponent<Text>();
+        //coinCounter = GameObject.Find("Coin Count").GetComponent<Text>();
     }
 
     //Updates at a fixed interval, regardless of framerate

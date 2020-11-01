@@ -65,6 +65,7 @@ public class playerMovement : MonoBehaviour
 
             if (GroundCheck()) //If the player IS grounded...
             {
+            
                 if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow)) //...and if the player is saying they want to jump...
                 {
                     //playerBody.velocity = new Vector3(playerBody.velocity.x, (jumpheight + jumpModifier), playerBody.velocity.z);
