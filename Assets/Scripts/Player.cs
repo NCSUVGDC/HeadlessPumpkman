@@ -42,9 +42,7 @@ public class Player : MonoBehaviour
     //Updates at a fixed interval, regardless of framerate
     private void FixedUpdate()
     {
-        //PLAYER MOVEMENT
-        
-
+        //PLAYER TURNING
         if (meleeState == AttackState.Ready || meleeState == AttackState.Cooldown) //Prevents the player from turning around during a melee attack
         {
             if (playerBody.velocity.x > 0 + turnAroundDeadzone || movementManager.getIsFacingRight()) //If substantially moving right, or you're already facing that way...
@@ -63,9 +61,6 @@ public class Player : MonoBehaviour
             }
         }
         
-        
-
-
         //CONTROL INPUT
         if ((Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.O)) && meleeState == AttackState.Ready)
         {
@@ -78,21 +73,12 @@ public class Player : MonoBehaviour
         {
 
         }
-
         if ((Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.P)) && rangedState == AttackState.Ready)
         {
             rangedState = AttackState.Windup;
             rangedTimer = rangedWindupTime;
             gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
         }
-
-
-        if ((Input.GetKey(KeyCode.C)))
-        {
-            Debug.Log("Enemy Spawned");
-            Instantiate(Resources.Load("Prefabs/DummyEnemy"));
-        }
-
 
         //ATTACK TIMERS
         if (meleeState != AttackState.Ready)
