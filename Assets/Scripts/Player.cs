@@ -34,9 +34,33 @@ public class Player : MonoBehaviour
     public float turnAroundDeadzone = 0.01f;
     private float coinCount = 0;
 
+    public float enemyKnockbackForce = 1.5f;
+
+    //DELETE THIS LATER
+    private int counter = 0;
+
     private void Start()
     {
         //coinCounter = GameObject.Find("Coin Count").GetComponent<Text>();
+    }
+
+    private void Update()
+    {
+        //CONTROL INPUT
+        if ((Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.O) || Input.GetKeyDown(KeyCode.Mouse0)) && meleeState == AttackState.Ready)
+        {
+            meleeState = AttackState.Windup;
+            meleeTimer = meleeWindupTime;
+            gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
+
+        }
+
+        if ((Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Mouse1)) && rangedState == AttackState.Ready)
+        {
+            rangedState = AttackState.Windup;
+            rangedTimer = rangedWindupTime;
+            gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
+        }
     }
 
     //Updates at a fixed interval, regardless of framerate
@@ -45,40 +69,20 @@ public class Player : MonoBehaviour
         //PLAYER TURNING
         if (meleeState == AttackState.Ready || meleeState == AttackState.Cooldown) //Prevents the player from turning around during a melee attack
         {
-            if (playerBody.velocity.x > 0 + turnAroundDeadzone || movementManager.getIsFacingRight()) //If substantially moving right, or you're already facing that way...
+            if (movementManager.getIsFacingRight() || movementManager.getCurrentInput() > 0) //If substantially moving right, or you're already facing that way...
             {
                 //Makes the player character face right, then repositions the sword hitbox accordingly
                 gameObject.transform.rotation = Quaternion.LookRotation(Vector3.right);
                 meleeWeapon.transform.position = new Vector3(gameObject.transform.position.x + meleeReach, gameObject.transform.position.y, 0);
                 movementManager.setIsFacingRight(true);
             }
-            if (playerBody.velocity.x < 0 - turnAroundDeadzone || !movementManager.getIsFacingRight()) //If substantially moving left, or you're already facing that way...
+            if (!movementManager.getIsFacingRight() || movementManager.getCurrentInput() < 0) //If substantially moving left, or you're already facing that way...
             {
                 //Makes the player character face left, then repositions the sword hitbox accordingly
                 gameObject.transform.rotation = Quaternion.LookRotation(Vector3.left);
                 meleeWeapon.transform.position = new Vector3(gameObject.transform.position.x - meleeReach, gameObject.transform.position.y, 0);
                 movementManager.setIsFacingRight(false);
             }
-        }
-        
-        //CONTROL INPUT
-        if ((Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.O)) || Input.GetKey(KeyCode.Mouse0) && meleeState == AttackState.Ready)
-        {
-            meleeState = AttackState.Windup;
-            meleeTimer = meleeWindupTime;
-            gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
-            //Swing animation would begin here
-        }
-        if ((Input.GetKeyUp(KeyCode.Z)) || Input.GetKeyUp(KeyCode.O))
-        {
-
-        }
-
-        if ((Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.P)) | Input.GetKey(KeyCode.Mouse1) && rangedState == AttackState.Ready)
-        {
-            rangedState = AttackState.Windup;
-            rangedTimer = rangedWindupTime;
-            gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
         }
 
         //ATTACK TIMERS
@@ -168,6 +172,14 @@ public class Player : MonoBehaviour
     {
         coinCount += input;
         coinCounter.text = coinCount.ToString();
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag.Equals("Enemy"))
+        {
+            movementManager.PushPlayer(false, enemyKnockbackForce);
+        }
     }
 
     public AttackState GetMeleeState()
