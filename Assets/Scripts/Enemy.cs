@@ -44,9 +44,9 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-      InvokeRepeating("switchDirection", turnAroundTime, turnAroundTime);
-      InvokeRepeating("jump", jumpInterval, jumpInterval);
-      player = GameObject.Find("Player").GetComponent<Rigidbody>();
+        InvokeRepeating("switchDirection", turnAroundTime, turnAroundTime);
+        InvokeRepeating("jump", jumpInterval, jumpInterval);
+        player = GameObject.Find("Player").GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
