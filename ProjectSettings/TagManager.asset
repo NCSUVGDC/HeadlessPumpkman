@@ -12,6 +12,7 @@ TagManager:
   - background
   - foreground
   - Crate
+  - wallHands
   layers:
   - Default
   - TransparentFX
@@ -54,6 +55,9 @@ TagManager:
     locked: 0
   - name: Platforms
     uniqueID: 2338623349
+    locked: 0
+  - name: Player
+    uniqueID: 1872275567
     locked: 0
   - name: Foreground
     uniqueID: 1667178741
