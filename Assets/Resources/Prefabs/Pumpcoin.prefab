@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6283076551123866279}
   - component: {fileID: 6015028862421499479}
   - component: {fileID: 3753179000557513468}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pumpcoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}

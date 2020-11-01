@@ -7,7 +7,7 @@ public class MenuScript : MonoBehaviour
 {
     public void enterCampaign()
     {
-        SceneManager.LoadScene("Level1_Joseph");
+        SceneManager.LoadScene("Level1");
     }
 
     public void enterEndless()

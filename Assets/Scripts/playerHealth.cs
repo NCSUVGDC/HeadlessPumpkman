@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class playerHealth : MonoBehaviour
 {
     public int health = 3;
 
     public GameObject player;
-
+    public GameObject levelTimer;
     public GameObject wall;
 
     public int maxHealth = 3;
+    public float endTimer = 2;
 
     Sprite fullHp = null;
     Sprite emptyHp = null;
@@ -31,7 +33,12 @@ public class playerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(player);
+            levelTimer.GetComponent<LevelTimer>().ChangeTimerState(false);
+            endTimer -= Time.deltaTime;
+            if (endTimer <= 0)
+            {
+                SceneManager.LoadScene("StartMenu");
+            }
         }
 
        

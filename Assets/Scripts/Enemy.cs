@@ -55,11 +55,6 @@ public class Enemy : MonoBehaviour
             Vector3 playerLoc = player.position - gameObject.transform.position;
             playerLoc.y = 0;
 
-            if (!NearbyGroundCheck())
-            {
-                Debug.Log("cliff");
-            }
-
             if (playerLoc.magnitude <= detectionRange)
             {
                 if (NearbyGroundCheck())
