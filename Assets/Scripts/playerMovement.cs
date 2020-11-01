@@ -21,6 +21,7 @@ public class playerMovement : MonoBehaviour
     public float frameGravity = 0.5f; //By how much the player's vertical speed decreases for every frame they are in the air
     public float jumpForce = 5;
     public float jumpheight = 7;
+    private float currentInput;
     //public int speed = 5;
 
 
@@ -29,6 +30,8 @@ public class playerMovement : MonoBehaviour
     public float jumpModifier = 0f;
     //private bool poweredUp = false;
     private bool hasPowerUp = false;
+
+    public Animator animator;
     
     float timestamp;
 
@@ -40,6 +43,8 @@ public class playerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        currentInput = Input.GetAxisRaw("Horizontal");
+
         if (playerBody != null)
         {
             //This if() block handles horizontal movement
@@ -49,7 +54,7 @@ public class playerMovement : MonoBehaviour
             }
             else //When not being pushed, and when not currently attacking, whether the player is holding a direction button will be read and converted into movement
             {
-                MovePlayerFromInput(Input.GetAxisRaw("Horizontal"));
+                MovePlayerFromInput(currentInput);
             }
 
             //playerBody.velocity = new Vector3(Input.GetAxis("Horizontal") * (speed + speedModifier), playerBody.velocity.y, playerBody.velocity.z);
@@ -90,6 +95,8 @@ public class playerMovement : MonoBehaviour
             PushManager();
         }
         startCooldown(powerUp);
+        
+        animator.SetFloat("speed", Mathf.Abs(playerBody.velocity.x));
     }
 
     void MovePlayerFromInput(float input)
@@ -286,6 +293,11 @@ public class playerMovement : MonoBehaviour
     public void setIsFacingRight(bool input)
     {
         isFacingRight = input;
+    }
+
+    public float getCurrentInput()
+    {
+        return currentInput;
     }
 
     public void startCooldown(Item item)
