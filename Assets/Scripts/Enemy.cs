@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
             if (health <= 0)
             {
                 self.GetComponent<CapsuleCollider>().enabled = false;
+                self.constraints = RigidbodyConstraints.FreezePosition;
                 animator.SetBool("destroyEnemy", true);
                 return true;
             }
