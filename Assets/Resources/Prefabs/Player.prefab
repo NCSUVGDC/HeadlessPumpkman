@@ -94,7 +94,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6566648146323611148}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: acd7137bf280df949a76d27039b43cb2, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -115,7 +115,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!114 &6566648146323611145
 MonoBehaviour:
@@ -131,12 +131,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6566648146323611140}
   playerBody: {fileID: 6566648146323611151}
-  frameAcceleration: 0.5
+  frameAcceleration: 1.5
   topSpeed: 10
-  speedBoostTime: 1
-  knockBackTime: 1
+  speedBoostTime: 0.2
+  knockBackTime: 0.1
   frameGravity: 0.5
-  jumpForce: 5
+  jumpForce: 15
   jumpheight: 7
   speedModifier: 0
   jumpModifier: 0

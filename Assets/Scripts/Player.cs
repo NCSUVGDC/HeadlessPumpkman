@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        coinCounter = GameObject.Find("Coin Count").GetComponent<Text>();
+        //coinCounter = GameObject.Find("Coin Count").GetComponent<Text>();
     }
 
     //Updates at a fixed interval, regardless of framerate
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
 
 
         //CONTROL INPUT
-        if ((Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.O)) && meleeState == AttackState.Ready)
+        if ((Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.O)) || Input.GetKey(KeyCode.Mouse0) && meleeState == AttackState.Ready)
         {
             meleeState = AttackState.Windup;
             meleeTimer = meleeWindupTime;
@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
 
         }
 
-        if ((Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.P)) && rangedState == AttackState.Ready)
+        if ((Input.GetKey(KeyCode.X) || Input.GetKey(KeyCode.P)) | Input.GetKey(KeyCode.Mouse1) && rangedState == AttackState.Ready)
         {
             rangedState = AttackState.Windup;
             rangedTimer = rangedWindupTime;

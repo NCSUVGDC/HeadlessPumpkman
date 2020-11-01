@@ -11,7 +11,7 @@ public class LevelEdge : MonoBehaviour
 
     private void Start()
     {
-        levelTimer = GameObject.Find("Level Timer").GetComponent<Text>();
+        //levelTimer = GameObject.Find("Level Timer").GetComponent<Text>();
     }
 
     private void OnTriggerEnter(Collider other)

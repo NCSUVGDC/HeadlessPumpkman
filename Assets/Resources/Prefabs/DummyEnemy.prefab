@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5188044701631092054}
   - component: {fileID: 5188044701631092057}
   - component: {fileID: 5188044701631092058}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DummyEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   player: {fileID: 0}
   self: {fileID: 5188044701631092057}
   detectionRange: 15
-  speed: 1
+  speed: 3
   turnAroundTime: 5
   jumpHeight: 3
   jumpInterval: 6

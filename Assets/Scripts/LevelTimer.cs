@@ -20,15 +20,19 @@ public class LevelTimer : MonoBehaviour
 
     public void ChangeTimerState(bool input)
     {
-        isTimerEnabled = input;
-        if (isTimerEnabled) //Just because I think this might be a problem down the line (playing levels back to back), I'm going to hard reset the timer every time its activated
+        if (input) //Just because I think this might be a problem down the line (playing levels back to back), I'm going to hard reset the timer every time its activated
         {
-            globalTime = 0;
-            wallOfDeath.GetComponent<wallScript>().StartMoving();
-            gameObject.GetComponent<Text>().text = "00.00.00";
+            if (!isTimerEnabled)
+            {
+                isTimerEnabled = true;
+                globalTime = 0;
+                wallOfDeath.GetComponent<wallScript>().StartMoving();
+                gameObject.GetComponent<Text>().text = "00.00.00";
+            }
         }
         else //If the level has just ended...
         {
+            isTimerEnabled = false;
             wallOfDeath.GetComponent<wallScript>().StopMoving();
         }
     }
