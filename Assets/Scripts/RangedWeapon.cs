@@ -57,7 +57,7 @@ public class RangedWeapon : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag.Equals("Enemy") || collision.collider.tag.Equals("Terrain"))
+        if (collision.collider.gameObject.layer.Equals(8))
         {
             Explode();
         }

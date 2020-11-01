@@ -32,6 +32,11 @@ public class Explosion : MonoBehaviour
             Debug.Log("OnTriggerEnter()");
             other.GetComponent<Enemy>().TakeDamage(myBomb.GetComponent<RangedWeapon>().damageVal);
         }
+        else if (other.tag.Equals("Crate"))
+        {
+            Debug.Log("OnTriggerEnter()");
+            other.GetComponent<Crate>().destroyAnimation();
+        }
     }
 
     public void Activate()

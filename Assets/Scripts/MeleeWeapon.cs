@@ -36,7 +36,7 @@ public class MeleeWeapon : MonoBehaviour
         }
         if (other.tag.Equals("Terrain"))
         {
-            movementManager.PushPlayer(true, speedBoostForce);
+            movementManager.PushPlayer(false, knockBackForce);
         }
         if(other.tag.Equals("Crate"))
         {

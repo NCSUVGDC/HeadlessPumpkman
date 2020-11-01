@@ -2112,6 +2112,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6566648146323611140, guid: 38003d34765ad6e4ea9b03e69c2363a2, type: 3}
+      propertyPath: coinCounter
+      value: 
+      objectReference: {fileID: 1938558866}
     - target: {fileID: 6566648146323611141, guid: 38003d34765ad6e4ea9b03e69c2363a2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2144,22 +2148,6 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: acd7137bf280df949a76d27039b43cb2, type: 2}
-    - target: {fileID: 6566648146323611145, guid: 38003d34765ad6e4ea9b03e69c2363a2, type: 3}
-      propertyPath: speedBoostTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6566648146323611145, guid: 38003d34765ad6e4ea9b03e69c2363a2, type: 3}
-      propertyPath: knockBackTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6566648146323611145, guid: 38003d34765ad6e4ea9b03e69c2363a2, type: 3}
-      propertyPath: frameAcceleration
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6566648146323611145, guid: 38003d34765ad6e4ea9b03e69c2363a2, type: 3}
-      propertyPath: jumpForce
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 6566648146323611148, guid: 38003d34765ad6e4ea9b03e69c2363a2, type: 3}
       propertyPath: m_Name
       value: Player

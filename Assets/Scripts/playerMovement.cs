@@ -219,7 +219,7 @@ public class playerMovement : MonoBehaviour
         Vector3 dir = new Vector3(0, -1, 0);
         RaycastHit other;
         bool isOverSomething = Physics.Raycast(playerBody.position, dir, out other, distance); //Checks if the player is on top of something, and sets "other" to be the thing the player is on top of
-        if (isOverSomething && other.collider.gameObject.tag.Equals("Terrain")) //If the player is on top of specifically Terrain, we know that they are grounded
+        if (isOverSomething && other.collider.gameObject.layer.Equals(8)) //If the player is on top of specifically Terrain, we know that they are grounded
         {
             return true;
         }
