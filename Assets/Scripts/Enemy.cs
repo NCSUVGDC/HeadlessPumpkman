@@ -101,4 +101,21 @@ public class Enemy : MonoBehaviour
     {
         goRight = !goRight;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        GameObject other = collision.collider.gameObject;
+
+        if (other != null)
+        {
+            if (other.CompareTag("wallOfDeath") || other.CompareTag("wallHands"))
+            {
+                Debug.Log("collides");
+                self.GetComponent<CapsuleCollider>().enabled = false;
+                self.constraints = RigidbodyConstraints.FreezePosition;
+                animator.SetBool("destroyEnemy", true);
+            }
+        }
+    }
 }

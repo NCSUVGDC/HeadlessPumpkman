@@ -14,4 +14,20 @@ public class Crate : MonoBehaviour
     {
         startedAnimation = state;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+        GameObject other = collision.collider.gameObject;
+
+        if (other != null)
+        {
+            if (other.CompareTag("wallOfDeath") || other.CompareTag("wallHands"))
+            {
+                Debug.Log("collides");
+                destroyAnimation();
+            }
+        }
+    }
 }
+

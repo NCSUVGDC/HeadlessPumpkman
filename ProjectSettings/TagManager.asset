@@ -12,6 +12,7 @@ TagManager:
   - background
   - foreground
   - Crate
+  - wallHands
   layers:
   - Default
   - TransparentFX
