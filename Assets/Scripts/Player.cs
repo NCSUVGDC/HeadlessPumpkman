@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
         {
             meleeState = AttackState.Windup;
             meleeTimer = meleeWindupTime;
-            gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
+            //gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
 
         }
 
@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
         {
             rangedState = AttackState.Windup;
             rangedTimer = rangedWindupTime;
-            gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
+            //gameObject.GetComponent<Renderer>().material = Resources.Load("Materials/Yellow", typeof(Material)) as Material;
         }
     }
 
