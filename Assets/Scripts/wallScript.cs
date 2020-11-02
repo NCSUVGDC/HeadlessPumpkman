@@ -5,7 +5,7 @@ using UnityEngine;
 public class wallScript : MonoBehaviour
 {
     public float speed = .03f;
-    private bool isActive = false;
+    public bool isActive = false;
     public Transform wall;
 
     public void StartMoving()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: deathHole
   m_EditorClassIdentifier: 
   name: Death Hole
-  health: -3
+  health: -50
   speed: 0
   jump: 0
   hasCooldown: 0

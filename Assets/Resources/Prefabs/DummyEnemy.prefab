@@ -129,9 +129,11 @@ MonoBehaviour:
   health: 100
   player: {fileID: 0}
   self: {fileID: 5188044701631092057}
-  detectionRange: 15
+  detectionRange: 7
   speed: 3
   turnAroundTime: 5
   jumpHeight: 3
   jumpInterval: 6
   goRight: 1
+  GCDistance: 2
+  animator: {fileID: 0}
