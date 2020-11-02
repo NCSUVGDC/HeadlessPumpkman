@@ -78,6 +78,7 @@ public class LevelGeneration : MonoBehaviour
             GameObject go = new GameObject();
             Vector3 oldOrigin = origin.transform.position;
             origin = Instantiate(go);
+            origin.name = "GeneratedLevel";
             origin.transform.position = oldOrigin + new Vector3(levelLength, 0, 0);
             GenerateLevel();
         }

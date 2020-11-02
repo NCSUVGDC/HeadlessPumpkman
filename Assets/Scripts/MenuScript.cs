@@ -12,7 +12,7 @@ public class MenuScript : MonoBehaviour
 
     public void enterEndless()
     {
-        SceneManager.LoadScene("NicoScene");
+        SceneManager.LoadScene("Endless");
     }
 
     public void returnToMenu()

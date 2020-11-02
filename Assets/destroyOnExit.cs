@@ -8,7 +8,14 @@ public class destroyOnExit : StateMachineBehaviour
     {
         if(animator.transform.parent)
         {
-            Destroy(animator.transform.parent.gameObject, stateInfo.length);
+            if (animator.transform.parent.name != "GeneratedLevel")
+            {
+                Destroy(animator.transform.parent.gameObject, stateInfo.length);
+            }
+            else
+            {
+                Destroy(animator.gameObject, stateInfo.length);
+            }
         }
         else
         {
