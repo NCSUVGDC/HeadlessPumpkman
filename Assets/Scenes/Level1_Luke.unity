@@ -185,6 +185,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6283076551123866278, guid: 0584df906c537954eb8cecfa417be93b, type: 3}
   m_PrefabInstance: {fileID: 43682133}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &53044901 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 459198841255130542, guid: 99247955c5db84234a6be621d459c3cb, type: 3}
+  m_PrefabInstance: {fileID: 459198840910099785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &68727383
 GameObject:
   m_ObjectHideFlags: 0
@@ -11714,6 +11719,14 @@ PrefabInstance:
       propertyPath: wall
       value: 
       objectReference: {fileID: 1821902928}
+    - target: {fileID: 6736836777819932581, guid: 99247955c5db84234a6be621d459c3cb, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 53044901}
+    - target: {fileID: 6736836777819932581, guid: 99247955c5db84234a6be621d459c3cb, type: 3}
+      propertyPath: levelTimer
+      value: 
+      objectReference: {fileID: 570130965}
     - target: {fileID: 6736836777819932583, guid: 99247955c5db84234a6be621d459c3cb, type: 3}
       propertyPath: m_Name
       value: Player

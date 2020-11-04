@@ -18,6 +18,8 @@ public class playerHealth : MonoBehaviour
     Sprite fullHp = null;
     Sprite emptyHp = null;
 
+    public Animator animator;
+
     private void Start()
     {
         fullHp = Resources.Load<Sprite>("Sprites/HealthIcon1");
@@ -33,6 +35,7 @@ public class playerHealth : MonoBehaviour
 
         if (health <= 0)
         {
+            animator.SetBool("isDead", true);
             levelTimer.GetComponent<LevelTimer>().ChangeTimerState(false);
             endTimer -= Time.deltaTime;
             if (endTimer <= 0)
